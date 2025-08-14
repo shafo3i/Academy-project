@@ -1,6 +1,7 @@
 'use client';
+import Image from "next/image";
 import { Button } from "./ui/button";
-import { ImageWithFallback } from "@/components/ImageWithFallback";
+
 
 export function Hero() {
   return (
@@ -47,7 +48,7 @@ export function Hero() {
           </div>
           <div className="flex items-center justify-center">
             <div className="relative">
-              <ImageWithFallback
+              <Image
                 src="/images/Gemini_Generated_Image_jckainjckainjcka.png"
                 alt="Islamic calligraphy and books"
                 className="mx-auto aspect-[3/2] overflow-hidden rounded-xl object-cover shadow-lg"
