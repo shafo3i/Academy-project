@@ -23,6 +23,5 @@ export async function createCourse(formDate: FormData) {
     },
   });
 
-  return course;
 
 }
