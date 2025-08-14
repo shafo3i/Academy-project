@@ -30,7 +30,7 @@ export function Header() {
           <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
             <span className="text-primary-foreground">📚</span>
           </div>
-          <span className="text-lg font-medium">Islamic Studies Academy</span>
+          <span className="text-lg font-medium">Almufeeda Academy</span>
         </div>
         
         <nav className="hidden md:flex items-center space-x-6 text-gray-300 ">

@@ -1,6 +1,11 @@
 // components/AboutUs.tsx
 import Image from 'next/image';
 
+export const metadata = {
+  title: "About Us - Al Mufeeda Academy",
+  description: "Learn more about Al Mufeeda Academy and our mission.",
+};
+
 export default function AboutUs() {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-emerald-50 to-white">

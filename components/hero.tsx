@@ -29,7 +29,6 @@ export function Hero() {
               <Button 
                 variant="outline" 
                 size="lg"
-                onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 {/* mail to  */}
                 <a href="mailto:info@almufeeda.com">Contact Us</a>
