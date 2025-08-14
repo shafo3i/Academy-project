@@ -51,25 +51,23 @@
 
 
 import prisma from "@/lib/prisma";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import Image from "next/image"; // Replaced img with Next.js Image
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
-interface CoursePageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function CourseDetailPage({ params }: CoursePageProps) {
-    const { id } = await params;
+// Use Next.js PageProps type instead of custom interface
+export default async function CourseDetailPage({
+  params
+}: {
+  params: { id: string }
+}) {
   const course = await prisma.course.findUnique({
     where: {
-      id: id,
+      id: params.id,
     },
   });
 
   if (!course) {
-    return ( // Added return statement
+    return (
       <div className="max-w-4xl mx-auto py-20 px-4">
         <h1 className="text-2xl font-bold">Course not found</h1>
       </div>
@@ -95,6 +93,7 @@ export default async function CourseDetailPage({ params }: CoursePageProps) {
                   alt={course.title}
                   fill
                   className="object-cover"
+                  priority
                 />
               </div>
             )}
