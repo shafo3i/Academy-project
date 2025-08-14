@@ -55,14 +55,12 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import Image from "next/image";
 
 // Use Next.js PageProps type instead of custom interface
-export default async function CourseDetailPage({
-  params
-}: {
-  params: { id: string }
-}) {
+export default async function CourseDetailPage({params}: {params: {id: string}}) {
+
+  const { id } = await params;
   const course = await prisma.course.findUnique({
     where: {
-      id: params.id,
+      id
     },
   });
 
