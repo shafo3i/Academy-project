@@ -52,17 +52,9 @@ import { revalidatePath } from "next/cache";
 
 export async function Courses() {
 
-let courses = [];
-  try {
-    // Fetch courses from the database
-    courses = await prisma.course.findMany();
-    revalidatePath("/courses");
-  } catch (error) {
-    console.error("Error fetching courses:", error);
-    return [];
-  }
+  const courses = await prisma.course.findMany();
 
-  
+  revalidatePath
 
   return (
     <section id="courses" className="py-16 bg-muted/30">
