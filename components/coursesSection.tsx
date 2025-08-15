@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { revalidatePath } from "next/cache";
 
 // const courses = [
 //   {
@@ -51,7 +52,17 @@ import Link from "next/link";
 
 export async function Courses() {
 
-  const courses = await prisma.course.findMany();
+let courses = [];
+  try {
+    // Fetch courses from the database
+    courses = await prisma.course.findMany();
+    revalidatePath("/courses");
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    return [];
+  }
+
+  
 
   return (
     <section id="courses" className="py-16 bg-muted/30">
