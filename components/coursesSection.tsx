@@ -63,16 +63,16 @@ interface Course {
 export function Courses() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<unknown | null>(null);
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
         const fetchedCourses = await getAllCourses();
         setCourses(fetchedCourses as Course[]);
-      } catch (err) {
-        console.error("Failed to fetch courses:", err);
-        setError(err);
+      } catch (error) {
+        console.error("Failed to fetch courses:", error);
+        setError(error);
       } finally {
         setLoading(false);
       }
