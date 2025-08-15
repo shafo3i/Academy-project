@@ -1,9 +1,12 @@
+'use client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import prisma from "@/lib/prisma";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
+import { getAllCourses } from "@/actions/blog/actions";
+import { use, useEffect, useState } from "react";
+
 
 // const courses = [
 //   {
@@ -49,12 +52,34 @@ import { revalidatePath } from "next/cache";
 //     topics: ["Tazkiyah", "Self-reflection", "Spiritual Growth", "Character Building"]
 //   }
 // ];
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  image: string;
+  tags: string[];
+}
+export function Courses() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export async function Courses() {
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const fetchedCourses = await getAllCourses();
+        setCourses(fetchedCourses as Course[]);
+      } catch (err) {
+        console.error("Failed to fetch courses:", err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const courses = await prisma.course.findMany();
-
-  revalidatePath
+    fetchCourses();
+  }, []);
 
   return (
     <section id="courses" className="py-16 bg-muted/30">
