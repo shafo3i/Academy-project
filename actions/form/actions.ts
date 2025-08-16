@@ -42,7 +42,7 @@ export async function formRegistration(formData: FormData) {
     });
 
     // Redirect to success page or back to form with success message
-    redirect('/?success=true');
+    redirect('/');
   } catch (error) {
     console.error('Registration error:', error);
     throw new Error('Failed to submit registration. Please try again.');

@@ -6,8 +6,8 @@ import { Home, Inbox, Calendar, Search, Settings } from "lucide-react"
 // Menu items.
 const items = [
   {
-    title: "Home",
-    url: "#",
+    title: "Dashboard",
+    url: "/dashboard",
     icon: Home,
   },
   {
