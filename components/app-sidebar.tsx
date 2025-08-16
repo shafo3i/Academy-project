@@ -1,4 +1,6 @@
 import { Home, Inbox, Calendar, Search, Settings } from "lucide-react"
+import { auth } from "@/lib/auth"
+import { headers } from "next/headers";
 
 
 
@@ -10,29 +12,35 @@ const items = [
     url: "/dashboard",
     icon: Home,
   },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+  // {
+  //   title: "Inbox",
+  //   url: "#",
+  //   icon: Inbox,
+  // },
+  // {
+  //   title: "Calendar",
+  //   url: "#",
+  //   icon: Calendar,
+  // },
+  // {
+  //   title: "Search",
+  //   url: "#",
+  //   icon: Search,
+  // },
+  // {
+  //   title: "Settings",
+  //   url: "#",
+  //   icon: Settings,
+  // },
 ]
 
-export function AppSidebar() {
+export async function AppSidebar() {
+  const reqHeader = await headers();
+  const session = await auth.api.getSession({
+    headers: reqHeader,
+  });
+
+  const user = session?.user;
     return (
 
         <aside className="w-64 bg-gray-800 text-white">
@@ -48,6 +56,17 @@ export function AppSidebar() {
                         </li>
                     ))}
                 </ul>
+            </div>
+            <div className="p-4 border-t border-gray-700">
+                <h3 className="text-sm font-semibold">User Info</h3>
+                {user ? (
+                    <div className="mt-2">
+                        <p className="text-sm">{user.name}</p>
+                        <p className="text-xs text-gray-400">{user.email}</p>
+                    </div>
+                ) : (
+                    <p className="text-xs text-gray-400">Not logged in</p>
+                )}
             </div>
         </aside>
     )}

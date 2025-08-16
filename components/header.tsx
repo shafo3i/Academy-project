@@ -4,19 +4,20 @@ import { Button } from "./ui/button";
 
 const NavItems = [
   {
-    name: "Courses",
-    href: "#courses",
+    name: "Home",
+    href: "/",
   },
-  {
-    name: "Pricing",
-    href: "#pricing",
-  },
+
   {
     name: "About",
     href: "#about",
   },
+    {
+    name: "Studies",
+    href: "#studies",
+  },
   {
-    name: "Register",
+    name: "Enroll",
     href: "/register",
   },
 ];
@@ -46,7 +47,7 @@ export function Header() {
         </nav>
 
         <Button variant="default" className="hidden md:flex" onClick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}>
-          <Link href="/register">Register Now</Link>
+          <Link href="/register">Enroll Now</Link>
         </Button>
       </div>
     </header>

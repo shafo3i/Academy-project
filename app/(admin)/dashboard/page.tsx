@@ -1,31 +1,63 @@
+'use client';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import prisma from "@/lib/prisma";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow  } from "@/components/ui/table";
 import Image from "next/image";
+import { getAllRegistrations }  from "@/actions/form/actions";
+import { getAllCourses } from "@/actions/blog/actions";
+import { useState, useEffect } from "react";
 
-export default async function AdminDashboard() {
+interface Course {
+  id: string;
+  title: string;
+  description: string | null;
+  content: string | null;
+  image: string | null;
+  tags: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}
 
+interface Registration {
+  id: string;
+  childFullName: string; 
+  parentFullName: string;
+  email: string;
+  childrens: string[];
+  createdAt: Date;
+  noteBookPosted: boolean | null;
+}
 
-    const courses = await prisma.course.findMany();
+export default function AdminDashboard() {
+  // const [courseCount, setCourseCount] = useState(0);
+  const [formCount, setFormCount] = useState(0);
+  const [recentCourses, setRecentCourses] = useState<Course[]>([]);
+  const [latestRegistrations, setLatestRegistrations] = useState<Registration[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const recentCourses = courses.slice(0, 5);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const data = await getAllCourses();
+      setRecentCourses(data);
+      setIsLoading(false);
+    };
+    fetchCourses();
+  }, []);
 
+  useEffect(() => {
+    const fetchRegistrations = async () => {
+      const data = await getAllRegistrations();
+      setLatestRegistrations(data.at(0) ? data.slice(0, 5) : []);
+      setIsLoading(false);
+    };
+    fetchRegistrations();
+  }, []);
 
-    const forms = await prisma.courseRegistration.findMany({
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        course: true,
-      },
-    });
-
-    const courseCount = courses.length;
-    const formCount = forms.length;
-
-    const latestRegistrations = forms.slice(0, 5);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -44,7 +76,7 @@ export default async function AdminDashboard() {
             <CardTitle>Total Courses</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{courseCount}</p>
+            <p className="text-2xl font-bold">{recentCourses.length}</p>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-r from-green-400 to-blue-400 shadow-md rounded-lg">
@@ -52,7 +84,7 @@ export default async function AdminDashboard() {
             <CardTitle>Total Registrations</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{formCount}</p>
+            <p className="text-2xl font-bold">{latestRegistrations.length}</p>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-r from-yellow-400 to-red-400 shadow-md rounded-lg">
@@ -60,7 +92,7 @@ export default async function AdminDashboard() {
             <CardTitle>Latest Registrations</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{latestRegistrations.length}</p>
+            <p className="text-2xl font-bold">{latestRegistrations[0]?.childFullName}</p>
           </CardContent>
         </Card>
        
@@ -75,17 +107,21 @@ export default async function AdminDashboard() {
           <Table >
             <TableHeader className=" bg-gradient-to-b from-blue-100 to-purple-100">
               <TableRow>
-                <TableHead>Name</TableHead>
+                <TableHead>Child Name</TableHead>
+                <TableHead>Parent Name</TableHead>
+                <TableHead>Childrens</TableHead>
                 <TableHead>Email</TableHead>
-                <TableHead>Course</TableHead>
+                <TableHead>Date</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {latestRegistrations.map((form) => (
                 <TableRow key={form.id}>
                   <TableCell>{form.childFullName}</TableCell>
+                  <TableCell>{form.parentFullName}</TableCell>
+                  <TableCell>{form.childrens.join(", ")}</TableCell>
                   <TableCell>{form.email}</TableCell>
-                  <TableCell>{form.course.title}</TableCell>
+                  <TableCell>{form.createdAt.toLocaleDateString()}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
