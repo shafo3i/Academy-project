@@ -30,12 +30,12 @@ model CourseRegistration {
   id        String   @id @default(cuid())
   courseId  String
   email     String
-  Childrens String[]
-  ChildFulltName String
-  ChildrenAge Int
-  ParentFullName String
-  ParentRelation String
-  Country       String
+  childrens String[]
+  childFullName String
+  childrenAge Int
+  parentFullName String
+  parentRelation String
+  country       String
   noteBookPosted Boolean?
   address       String
   fee           Float

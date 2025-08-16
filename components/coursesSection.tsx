@@ -97,7 +97,7 @@ export function Courses() {
         </div>
         <div className="mx-auto grid max-w-4xlitems-center gap-6 py-12 lg:grid-cols-2 xl:grid-cols-3">
           {courses.map((course) => (
-            <Card key={course.title} className="relative overflow-hidden transition-all hover:shadow-lg">
+            <Card key={course.id} className="relative overflow-hidden transition-all hover:shadow-lg">
               <CardHeader>
                 <div className="flex items-center space-x-2">
                   {/* <span className="text-2xl">{course.icon}</span> */}
