@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 
-export default function SuccessPage({
+export default async function SuccessPage({
   searchParams,
 }: {
-  searchParams: { session_id?: string };
+  searchParams: Promise<{ session_id?: string }>;
 }) {
+  const params = await searchParams;
   return (
     <section className="py-16 bg-muted/30 min-h-screen flex items-center justify-center">
       <div className="container px-4 md:px-6 mx-auto">
@@ -33,9 +34,9 @@ export default function SuccessPage({
                 </ul>
               </div>
               
-              {searchParams.session_id && (
+              {params.session_id && (
                 <p className="text-xs text-muted-foreground">
-                  Payment ID: {searchParams.session_id}
+                  Payment ID: {params.session_id}
                 </p>
               )}
               

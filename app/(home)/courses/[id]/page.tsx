@@ -1,9 +1,12 @@
-// @ts-nocheck
 import prisma from "@/lib/prisma";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
-export default async function CourseDetailPage({ params }) {
+export default async function CourseDetailPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
   const { id } = await params;
   const course = await prisma.course.findUnique({
     where: {
