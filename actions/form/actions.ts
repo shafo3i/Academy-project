@@ -114,3 +114,17 @@ export async function getAllRegistrations() {
 }
 
 
+// Delete registration by ID
+export async function deleteRegistration(id: string) {
+  try {
+    await prisma.courseRegistration.delete({
+      where: {
+        id,
+      },
+    });
+    console.log('Registration deleted successfully:', id);
+  } catch (error) {
+    console.error('Error deleting registration:', error);
+    throw new Error('Failed to delete registration. Please try again later.');
+  }
+}

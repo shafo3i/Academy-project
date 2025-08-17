@@ -5,10 +5,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import prisma from "@/lib/prisma";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow  } from "@/components/ui/table";
 import Image from "next/image";
-import { getAllRegistrations }  from "@/actions/form/actions";
+import { getAllRegistrations, deleteRegistration }  from "@/actions/form/actions";
 import { getAllCourses } from "@/actions/blog/actions";
 import { useState, useEffect } from "react";
-import { editCourse } from "@/actions/courses/actions";
+import { GrView } from "react-icons/gr";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 interface Course {
   id: string;
@@ -38,6 +39,13 @@ export default function AdminDashboard() {
   const [latestRegistrations, setLatestRegistrations] = useState<Registration[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // const handleDelete = async (id: string) => {
+  //   const confirmed = confirm("Are you sure you want to delete this registration?");
+  //   if (confirmed) {
+  //     await deleteRegistration(id);
+  //     setLatestRegistrations(latestRegistrations.filter((reg) => reg.id !== id));
+  //   }
+  // };
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -114,6 +122,7 @@ export default function AdminDashboard() {
                 <TableHead>Childrens</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Date</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -124,6 +133,16 @@ export default function AdminDashboard() {
                   <TableCell>{form.childrens.join(", ")}</TableCell>
                   <TableCell>{form.email}</TableCell>
                   <TableCell>{form.createdAt.toLocaleDateString()}</TableCell>
+                  <TableCell>
+                    <div className="flex gap-2">
+                      <GrView 
+                      className="cursor-pointer text-blue-500 hover:text-blue-700"
+                      onClick={() => window.location.href = `/dashboard/registrations/${form.id}`} />
+                      <FaDeleteLeft 
+                      className="cursor-pointer text-red-500 hover:text-red-700"
+                      onClick={() => deleteRegistration(form.id)} />
+                    </div>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

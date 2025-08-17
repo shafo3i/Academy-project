@@ -40,9 +40,9 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
-          <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
+          <div className="h-8 w-8 rounded-full flex items-center justify-center">
             <Image
-              src="/logo.png"
+              src="/logoalt.png"
               alt="Almufeeda Academy Logo"
               width={32}
               height={32}

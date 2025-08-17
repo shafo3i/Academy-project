@@ -202,8 +202,8 @@ export default function RegistrationForm() {
                 <div className="bg-muted p-4 rounded-lg">
                   <h3 className="font-semibold mb-2">Pricing Information</h3>
                   <div className="space-y-2 text-sm">
-                    <p>• 1 Child: £25</p>
-                    <p>• 2+ Children: £20 per child (discount applied)</p>
+                    <p>• 1 Child: £25 per month</p>
+                    <p>• 2+ Children: £20 per child/month (discount applied)</p>
                     <div className="mt-3 p-3 bg-background rounded border">
                       <p className="font-semibold">
                         Total for {selectedChildren} child{selectedChildren > 1 ? 'ren' : ''}: £{totalPrice}
