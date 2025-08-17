@@ -8,6 +8,7 @@ import Image from "next/image";
 import { getAllRegistrations }  from "@/actions/form/actions";
 import { getAllCourses } from "@/actions/blog/actions";
 import { useState, useEffect } from "react";
+import { editCourse } from "@/actions/courses/actions";
 
 interface Course {
   id: string;
@@ -36,6 +37,7 @@ export default function AdminDashboard() {
   const [recentCourses, setRecentCourses] = useState<Course[]>([]);
   const [latestRegistrations, setLatestRegistrations] = useState<Registration[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -139,12 +141,21 @@ export default function AdminDashboard() {
                 <TableHeader className=" bg-gradient-to-b from-blue-100 to-purple-100">
                   <TableRow>
                     <TableHead>Title</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {recentCourses.map((course) => (
                     <TableRow key={course.id}>
                       <TableCell>{course.title}</TableCell>
+                      <TableCell>
+                        <div className="flex gap-2">
+                          <Link href={`/dashboard/courses/edit/${course.id}`}>
+                            <Button variant="outline">Edit</Button>
+                          </Link>
+                          
+                        </div>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
