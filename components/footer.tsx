@@ -8,7 +8,7 @@ export function Footer() {
               <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
                 <span className="text-primary-foreground">📚</span>
               </div>
-              <span className="text-lg font-medium">Islamic Studies Academy</span>
+              <span className="text-lg font-medium">Almufeeda Academy</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Dedicated to providing authentic Islamic education in the modern world.
