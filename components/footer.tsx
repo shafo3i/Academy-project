@@ -13,7 +13,6 @@ export function Footer() {
             </div>
             <p className="text-sm text-muted-foreground">
               Dedicated to providing authentic Islamic education in the modern world.
-              Learn from qualified scholars with traditional knowledge.
             </p>
           </div>
 
