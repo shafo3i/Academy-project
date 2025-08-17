@@ -48,9 +48,9 @@ export default async function EditCourse({ params }: { params: Promise<{ id: str
                        <Label htmlFor="tags">Tags</Label>
                        <Input id="tags" name="tags" defaultValue={course?.tags.join(", ") || ""} />
                    </div>
-                   <div className="mb-4 space-y-2 flex justify-between">
+                   <div className="mb-4 space-y-2 flex justify-between cursor-pointer">
                    <Button type="submit" disabled={isLoading}>
-                       {isLoading ? "Editing..." : "Save Changes"}
+                       {isLoading ? "Saving..." : "Save Changes"}
                    </Button>
                    <Button type="button" variant="secondary">
                        <Link href={`/dashboard`}>

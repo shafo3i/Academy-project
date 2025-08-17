@@ -1,6 +1,8 @@
 import { Home, Inbox, Calendar, Search, Settings } from "lucide-react"
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers";
+import {SignOut} from "./sign-out";
+
 
 
 
@@ -68,5 +70,6 @@ export async function AppSidebar() {
                     <p className="text-xs text-gray-400">Not logged in</p>
                 )}
             </div>
+            <SignOut />
         </aside>
     )}
