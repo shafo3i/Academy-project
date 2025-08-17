@@ -43,9 +43,9 @@ export function Footer() {
           <div className="space-y-4">
             <h4 className="font-medium">Contact</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>info@islamicstudiesacademy.co.uk</li>
-              <li>+44 20 1234 5678</li>
-              <li>Mon-Fri: 9AM-6PM GMT</li>
+              <li>connect@almufeedaacademy.com</li>
+              <li>+447438225185</li>
+              {/* <li>Mon-Fri: 9AM-6PM GMT</li> */}
             </ul>
           </div>
         </div>
