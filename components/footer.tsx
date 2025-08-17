@@ -2,7 +2,8 @@ export function Footer() {
   return (
     <footer className="border-t bg-muted/30">
       <div className="container px-4 md:px-6 py-12 mx-auto">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {/* <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"> */}
+        <div className=" flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0 md:space-x-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
@@ -16,7 +17,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h4 className="font-medium">Courses</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Quran Studies</li>
@@ -27,9 +28,9 @@ export function Footer() {
               <li>Marriage & Divorce</li>
               <li>Soul Purification</li>
             </ul>
-          </div>
+          </div> */}
 
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h4 className="font-medium">Support</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>FAQ</li>
@@ -37,7 +38,7 @@ export function Footer() {
               <li>Student Support</li>
               <li>Technical Help</li>
             </ul>
-          </div>
+          </div> */}
 
           <div className="space-y-4">
             <h4 className="font-medium">Contact</h4>

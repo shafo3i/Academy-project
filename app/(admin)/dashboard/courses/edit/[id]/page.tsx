@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle,  CardDescription, CardContent, CardFooter 
 import { Button } from "@/components/ui/button"
 import prisma from "@/lib/prisma"
 import Link from "next/link"
+import { Textarea } from "@/components/ui/textarea"
 export default async function EditCourse({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const course = await prisma.course.findUnique({
@@ -16,7 +17,7 @@ export default async function EditCourse({ params }: { params: Promise<{ id: str
 
     const isLoading = false;
     return (
-       <Card className="w-full max-w-2xl mx-auto mt-10 h-[600px]">
+       <Card className="w-full max-w-2xl mx-auto mt-10 ">
            <CardHeader>
                <CardTitle>Edit Course</CardTitle>
                <CardDescription>Fill out the form below to edit the course.</CardDescription>
@@ -34,11 +35,15 @@ export default async function EditCourse({ params }: { params: Promise<{ id: str
                    </div>
                    <div className="mb-4 space-y-2">
                        <Label htmlFor="description">Description</Label>
-                       <Input id="description" name="description" defaultValue={course?.description || ""} />
+                       <Textarea 
+                       rows={4}
+                       id="description" name="description" defaultValue={course?.description || ""} />
                    </div>
                    <div className="mb-4 space-y-2">
                        <Label htmlFor="content">Content</Label>
-                       <Input id="content" name="content" defaultValue={course?.content || ""} />
+                       <Textarea 
+                       rows={6}
+                       id="content" name="content" defaultValue={course?.content || ""} />
                    </div>
                    <div className="mb-4 space-y-2">
                        <Label htmlFor="image">Image</Label>

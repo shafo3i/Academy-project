@@ -9,16 +9,16 @@ const NavItems = [
   },
 
   {
-    name: "About",
+    name: "About Us",
     href: "#about",
   },
-    {
-    name: "Studies",
-    href: "#studies",
+  {
+    name: "Courses",
+    href: "#courses",
   },
   {
-    name: "Enroll",
-    href: "/register",
+    name: "Contact Us",
+    href: "#contact",
   },
 ];
 

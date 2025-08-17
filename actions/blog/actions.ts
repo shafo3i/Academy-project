@@ -9,6 +9,7 @@ export const getAllCourses = async () => {
             orderBy: {
                 createdAt: 'desc',
             },
+            take: 1,
         });
         revalidatePath('/courses');
         return courses;

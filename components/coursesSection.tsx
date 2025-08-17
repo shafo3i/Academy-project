@@ -87,17 +87,20 @@ export function Courses() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl tracking-tighter sm:text-5xl">
-              Comprehensive Islamic Studies
+              Topics to be studied
             </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            {/* <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Our curriculum covers all essential aspects of Islamic knowledge, taught by qualified scholars 
               with years of experience in traditional Islamic education.
-            </p>
+            </p> */}
           </div>
         </div>
-        <div className="mx-auto grid max-w-4xlitems-center gap-6 py-12 lg:grid-cols-2 xl:grid-cols-3">
+
+
+
+                <div className="flex flex-col items-center justify-center mt-10 space-y-6">
           {courses.map((course) => (
-            <Card key={course.id} className="relative overflow-hidden transition-all hover:shadow-lg">
+            <Card key={course.id} className="w-[600px] transition-all hover:shadow-lg ">
               <CardHeader>
                 <div className="flex items-center space-x-2">
                   {/* <span className="text-2xl">{course.icon}</span> */}
@@ -121,7 +124,7 @@ export function Courses() {
                 </div>
 
                 <div className="mt-4">
-                  <Button variant="outline"><Link href={`/courses/${course.id}`}>View Course</Link></Button>
+                  <Button variant="outline"><Link href={`/courses/${course.id}`}>View description</Link></Button>
                 </div>
               </CardContent>
             </Card>
@@ -131,3 +134,39 @@ export function Courses() {
     </section>
   );
 }
+
+
+
+
+        // <div className="mx-auto grid max-w-4xlitems-center gap-6 py-12 lg:grid-cols-2 xl:grid-cols-3">
+        //   {courses.map((course) => (
+        //     <Card key={course.id} className="relative overflow-hidden transition-all hover:shadow-lg">
+        //       <CardHeader>
+        //         <div className="flex items-center space-x-2">
+        //           {/* <span className="text-2xl">{course.icon}</span> */}
+        //           <Image src={course.image ?? "/default-course.png"} alt={course.title} width={40} height={40} />
+        //           <CardTitle className="text-xl">{course.title}</CardTitle>
+        //         </div>
+        //         <CardDescription className="text-sm">
+        //           {course.description}
+        //         </CardDescription>
+        //       </CardHeader>
+        //       <CardContent>
+        //         <div className="flex flex-wrap gap-1">
+        //           {course.tags.map((tag) => (
+        //             <span
+        //               key={tag}
+        //               className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground"
+        //             >
+        //               {tag}
+        //             </span>
+        //           ))}
+        //         </div>
+
+        //         <div className="mt-4">
+        //           <Button variant="outline"><Link href={`/courses/${course.id}`}>View description</Link></Button>
+        //         </div>
+        //       </CardContent>
+        //     </Card>
+        //   ))}
+        // </div>

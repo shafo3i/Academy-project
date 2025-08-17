@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function AboutUs() {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-emerald-50 to-white">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-teal-950">
+      {/* <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-emerald-800 mb-4">
             About Al Mufeeda Academy
@@ -60,6 +60,23 @@ export default function AboutUs() {
               </p>
             </div>
           </div>
+        </div>
+      </div> */}
+      <div className='max-w-4xl mx-auto flex-col items-center justify-center text-center space-y-6'>
+        <div className="py-16 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-200 mb-10">ABOUT US</h2>
+          <p className="text-lg text-gray-200">
+            Welcome to Al Mufeeda Academy — a dedicated institute committed to providing 
+            authentic, sound, and in-depth Islamic and Qur’anic education to women and the 
+            youth. Our mission is to nurture a strong Islamic identity and deepen the connection 
+            with Allah ﷻ through meaningful and relevant knowledge. We are proud to launch our journey 
+            with a unique Islamic Studies course designed specifically for youth — boys and girls — 
+            covering essential topics to help them confidently navigate life as practicing Muslims, in sha 
+            Allah. Our teacher is a qualified Qaaidah Nooraniyyah instructor with years of experience teaching 
+            Tajweed, Qur’an, and Islamic Studies to children and teenagers in both madrassah settings and private 
+            sessions. 
+
+          </p>
         </div>
       </div>
     </section>

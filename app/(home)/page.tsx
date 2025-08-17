@@ -1,4 +1,5 @@
 import AboutUs from "@/components/about";
+import { Contact } from "@/components/contact";
 import { Courses } from "@/components/coursesSection";
 import { Hero } from "@/components/hero";
 import { RegistrationForm } from "@/components/registration-form";
@@ -12,6 +13,7 @@ export default function Home() {
         <Hero />
         <AboutUs />
         <Courses />
+        <Contact />
       </main>
       
     </div>
