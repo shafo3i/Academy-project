@@ -40,7 +40,7 @@ export default async function PaymentsPage() {
 
       {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
+        <Card className="bg-gradient-to-r from-blue-400 to-purple-400 shadow-md rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
           </CardHeader>
@@ -51,7 +51,7 @@ export default async function PaymentsPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-r from-green-400 to-blue-400 shadow-md rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Payments</CardTitle>
           </CardHeader>
@@ -62,7 +62,7 @@ export default async function PaymentsPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-r from-yellow-400 to-red-400 shadow-md rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Completed</CardTitle>
           </CardHeader>
@@ -73,7 +73,7 @@ export default async function PaymentsPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-r from-purple-400 to-pink-400 shadow-md rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Pending</CardTitle>
           </CardHeader>
@@ -87,7 +87,7 @@ export default async function PaymentsPage() {
       </div>
 
       {/* Payments Table */}
-      <Card>
+      <Card className="mt-6">
         <CardHeader>
           <CardTitle>Recent Payments</CardTitle>
           <CardDescription>
