@@ -1,4 +1,4 @@
-import { Home, Inbox, Calendar, Search, Settings } from "lucide-react"
+import { Home, Inbox, Calendar, Search, Settings, Wallet } from "lucide-react"
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers";
 import {SignOut} from "./sign-out";
@@ -14,11 +14,11 @@ const items = [
     url: "/dashboard",
     icon: Home,
   },
-  // {
-  //   title: "Inbox",
-  //   url: "#",
-  //   icon: Inbox,
-  // },
+  {
+    title: "Payments",
+    url: "/dashboard/payments",
+    icon: Wallet,
+  },
   // {
   //   title: "Calendar",
   //   url: "#",

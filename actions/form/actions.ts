@@ -78,6 +78,25 @@ export async function formRegistration(formData: FormData) {
 
     console.log('Stripe session created:', session.id);
 
+    // Create payment record
+    const payment = await prisma.payment.create({
+      data: {
+        courseRegistrationId: registration.id,
+        stripeSessionId: session.id,
+        amount: parseFloat(fee),
+        currency: 'gbp',
+        status: 'pending',
+        description: `Islamic Studies Program Registration for ${numChildren} child${parseInt(numChildren) > 1 ? 'ren' : ''}`,
+        metadata: {
+          numChildren: parseInt(numChildren),
+          childFullName,
+          parentFullName,
+        },
+      },
+    });
+
+    console.log('Payment record created:', payment.id);
+
     // Return the session URL instead of redirecting
     return { success: true, redirectUrl: session.url };
     
@@ -105,6 +124,7 @@ export async function getAllRegistrations() {
       orderBy: {
         createdAt: 'desc',
       },
+     
     });
     return registrations;
   } catch (error) {
@@ -121,10 +141,100 @@ export async function deleteRegistration(id: string) {
       where: {
         id,
       },
+      include: {
+        Payment: true,
+      },
     });
     console.log('Registration deleted successfully:', id);
   } catch (error) {
     console.error('Error deleting registration:', error);
     throw new Error('Failed to delete registration. Please try again later.');
+  }
+}
+
+// Handle payment completion when user returns from Stripe
+export async function handlePaymentCompletion(sessionId: string) {
+  try {
+    // Retrieve the Stripe session
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    
+    if (!session) {
+      throw new Error('Stripe session not found');
+    }
+
+    // Update payment record
+    const payment = await prisma.payment.update({
+      where: {
+        stripeSessionId: sessionId,
+      },
+      data: {
+        status: session.payment_status === 'paid' ? 'completed' : 'failed',
+        stripePaymentIntentId: session.payment_intent as string,
+        stripeCustomerId: session.customer as string,
+        paymentMethod: 'card', // Default for checkout sessions
+        paidAt: session.payment_status === 'paid' ? new Date() : null,
+        metadata: {
+          ...session.metadata,
+          stripeSessionData: {
+            id: session.id,
+            amount_total: session.amount_total,
+            currency: session.currency,
+            payment_status: session.payment_status,
+          },
+        },
+      },
+    });
+
+    console.log('Payment completed:', payment.id, 'Status:', payment.status);
+    
+    return {
+      success: true,
+      payment,
+      registration: await prisma.courseRegistration.findUnique({
+        where: { id: payment.courseRegistrationId },
+        include: { Payment: true },
+      }),
+    };
+  } catch (error) {
+    console.error('Error handling payment completion:', error);
+    throw new Error('Failed to process payment completion. Please contact support.');
+  }
+}
+
+// Get payment details by session ID
+export async function getPaymentBySessionId(sessionId: string) {
+  try {
+    const payment = await prisma.payment.findUnique({
+      where: {
+        stripeSessionId: sessionId,
+      },
+      include: {
+        courseRegistration: true,
+      },
+    });
+    
+    return payment;
+  } catch (error) {
+    console.error('Error fetching payment:', error);
+    throw new Error('Failed to fetch payment details.');
+  }
+}
+
+// Get all payments with registration details
+export async function getAllPayments() {
+  try {
+    const payments = await prisma.payment.findMany({
+      include: {
+        courseRegistration: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    
+    return payments;
+  } catch (error) {
+    console.error('Error fetching payments:', error);
+    throw new Error('Failed to fetch payments.');
   }
 }

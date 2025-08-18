@@ -40,7 +40,38 @@ model CourseRegistration {
   fee            Float
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  Payment        Payment[]
 }
+
+//payment related to CourseRegistration
+model Payment {
+  id                   String   @id @default(cuid())
+  courseRegistrationId String
+  
+  // Stripe payment details
+  stripeSessionId      String?  @unique
+  stripePaymentIntentId String? @unique
+  stripeCustomerId     String?
+  
+  // Payment information
+  amount               Float
+  currency             String   @default("gbp")
+  status               String   // pending, completed, failed, cancelled, refunded
+  paymentMethod        String?  // card, bank_transfer, etc.
+  
+  // Metadata
+  description          String?
+  metadata             Json?    // For storing additional Stripe metadata
+  
+  // Timestamps
+  paidAt               DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  
+  // Relations
+  courseRegistration   CourseRegistration @relation(fields: [courseRegistrationId], references: [id], onDelete: Cascade)
+}
+
 
 model User {
   id            String    @id

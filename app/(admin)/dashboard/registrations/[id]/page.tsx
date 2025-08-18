@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle,  CardDescription, CardContent, CardFooter 
 import { Button } from "@/components/ui/button"
 import prisma from "@/lib/prisma"
 import Link from "next/link"
+import { Input } from "@/components/ui/input"
 export default async function RegisteredDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
   const registered = await prisma.courseRegistration.findUnique({
@@ -95,15 +96,15 @@ export default async function RegisteredDetailsPage({ params }: { params: Promis
           <div className="flex flex-col items-start space-y-2 border-b">
             <Label className="font-semibold">Note Book</Label>
             <div className="w-full bg-gray-100 p-2 rounded-md">
-            {/* <p>{registered?.noteBookPosted ? "Notebook has been posted." : "No notebook has been posted."}</p> */}
-            <p>{registered?.noteBookPosted}</p>
+            <p>{registered?.noteBookPosted ? "Notebook has been requested." : "No notebook has been requested."}</p>
+            {/* <Input type="text" value={registered?.noteBookPosted ? "Notebook has been requested." : "No notebook has been requested."} disabled /> */}
           </div>
           </div>
 
         </div>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Link href="/(admin)/dashboard">
+        <Link href="/dashboard">
           <Button variant="secondary">Back to Dashboard</Button>
         </Link>
       </CardFooter>

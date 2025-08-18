@@ -10,6 +10,8 @@ import { getAllCourses } from "@/actions/blog/actions";
 import { useState, useEffect } from "react";
 import { GrView } from "react-icons/gr";
 import { FaDeleteLeft } from "react-icons/fa6";
+import { getAllPayments } from "@/actions/form/actions";
+
 
 interface Course {
   id: string;
@@ -32,12 +34,30 @@ interface Registration {
   noteBookPosted: boolean | null;
 }
 
+interface Payment {
+  id: string;
+  courseRegistrationId: string;
+  stripeSessionId: string | null;
+  amount: number;
+  currency: string;
+  status: string;
+  description: string | null;
+  stripePaymentIntentId: string | null;
+  stripeCustomerId: string | null;
+  metadata: any | null;
+  paymentMethod: string | null;
+  paidAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export default function AdminDashboard() {
   // const [courseCount, setCourseCount] = useState(0);
   const [formCount, setFormCount] = useState(0);
   const [recentCourses, setRecentCourses] = useState<Course[]>([]);
   const [latestRegistrations, setLatestRegistrations] = useState<Registration[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [payments, setPayments] = useState<Payment[]>([]);
 
   // const handleDelete = async (id: string) => {
   //   const confirmed = confirm("Are you sure you want to delete this registration?");
@@ -65,6 +85,15 @@ export default function AdminDashboard() {
     fetchRegistrations();
   }, []);
 
+  useEffect(() => {
+    const fetchPayments = async () => {
+      const data = await getAllPayments();
+      setPayments(data);
+      setIsLoading(false);
+    };
+    fetchPayments();
+  }, []);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -80,7 +109,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="bg-gradient-to-r from-blue-400 to-purple-400">
           <CardHeader>
             <CardTitle>Total Courses</CardTitle>
@@ -105,7 +134,14 @@ export default function AdminDashboard() {
             <p className="text-2xl font-bold">{latestRegistrations[0]?.childFullName}</p>
           </CardContent>
         </Card>
-       
+        <Card className="bg-gradient-to-r from-purple-400 to-pink-400 shadow-md rounded-lg">
+          <CardHeader>
+            <CardTitle>Total Payments</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold">{payments.length}</p>
+          </CardContent>
+        </Card>
       </div>
       <div className="flex  mt-6 mb-4 gap-4">
         <div className="flex-1 ">
