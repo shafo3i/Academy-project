@@ -119,10 +119,10 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 # Clone the repository
-git clone https://github.com/shafo3i/almufeeda.git
+git clone https://github.com/shafo3i/Academy-project.git
 
 # Navigate to project directory
-cd almufeeda
+cd Academy-project
 
 # Install dependencies
 npm install
@@ -563,7 +563,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Barakallahu feeki** for using Almufeeda Academy!
 
-[⬆ Back to top](#-almufeeda-academy---islamic-studies-platform)
+[⬆ Back to top](#-academy-project---islamic-studies-platform)
 
 </div>
 
