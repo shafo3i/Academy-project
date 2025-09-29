@@ -40,7 +40,7 @@
 
 ### 🎓 **Core Functionality**
 - **Course Registration System** - Complete registration flow for Islamic Studies program
-- **Dynamic Pricing** - £25 for 1 child, £20 each for 2+ children from same household
+- **Dynamic Pricing** -     can be made to accept payments for registrations 
 - **Multi-Child Support** - Register multiple children in single transaction
 - **International Support** - Global registration with country-specific features
 
