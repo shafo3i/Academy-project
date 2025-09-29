@@ -8,7 +8,7 @@
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white)
 
-**المدرسة المفيدة** - *An institute aiming to equip the youth and sisters with essential Islamic knowledge*
+ An institute aiming to equip the youth and sisters with essential Islamic knowledge
 
 [🚀 Live Demo](#) • [📖 Documentation](#features) • [🐛 Report Bug](../../issues) • [✨ Request Feature](../../issues)
 
