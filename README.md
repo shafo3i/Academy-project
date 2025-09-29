@@ -1,4 +1,4 @@
-# 🕌 Almufeeda Academy - Islamic Studies Platform
+# 🕌 Academy-Project - Islamic Studies Platform
 
 <div align="center">
 
